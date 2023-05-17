@@ -1,4 +1,4 @@
-package com.axellinoanggoro.binar_challenge6.view
+package com.axellinoanggoro.binar_challenge6.view.adapter
 
 
 import android.view.LayoutInflater
@@ -16,12 +16,12 @@ class MovieAdapter(private var listMovie: List<ResultPopularMovie>, private val 
         fun onItemClick(data: DataPopularMovie)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MovieAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.titleMovie.text = listMovie[position].originalTitle
         holder.binding.dateMovie.text = listMovie[position].releaseDate
         holder.binding.dscMovie.text = listMovie[position].overview

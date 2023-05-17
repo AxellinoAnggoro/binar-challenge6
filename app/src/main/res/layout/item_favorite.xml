@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cvMovie"
+    android:id="@+id/cvFav"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="20dp">
@@ -11,7 +11,7 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/imgMovie"
+            android:id="@+id/imgFav"
             android:layout_centerVertical="true"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -21,29 +21,29 @@
         <TextView
             style="@style/TextAppearance.MdcTypographyStyles.Headline6"
             android:text="@string/judul_film"
-            android:id="@+id/titleMovie"
+            android:id="@+id/titleFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/imgMovie"
+            android:layout_toEndOf="@+id/imgFav"
             android:textStyle="bold" />
 
         <TextView
             style="@style/TextAppearance.MdcTypographyStyles.Caption"
-            android:id="@+id/dateMovie"
+            android:id="@+id/dateFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/titleMovie"
-            android:layout_toEndOf="@id/imgMovie"
+            android:layout_below="@+id/titleFav"
+            android:layout_toEndOf="@id/imgFav"
             android:text="@string/_05_05_2023" />
 
         <TextView
             style="@style/TextAppearance.MdcTypographyStyles.Body2"
-            android:id="@+id/dscMovie"
+            android:id="@+id/dscFav"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/dateMovie"
-            android:layout_toEndOf="@id/imgMovie"
+            android:layout_below="@+id/dateFav"
+            android:layout_toEndOf="@id/imgFav"
             android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_phasellus_facilisis_eros_nulla_porttitor_scelerisque_purus_feugiat_sed"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

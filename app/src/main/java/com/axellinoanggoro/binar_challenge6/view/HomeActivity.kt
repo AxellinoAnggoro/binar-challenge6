@@ -1,15 +1,16 @@
 package com.axellinoanggoro.binar_challenge6.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.axellinoanggoro.binar_challenge6.databinding.ActivityHomeBinding
 import com.axellinoanggoro.binar_challenge6.model.DataPopularMovie
+import com.axellinoanggoro.binar_challenge6.view.adapter.MovieAdapter
 import com.axellinoanggoro.binar_challenge6.viewmodel.MovieViewmodel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +19,7 @@ class HomeActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var pref: SharedPreferences
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -26,7 +28,7 @@ class HomeActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
         pref = this.getSharedPreferences("data_reg", Context.MODE_PRIVATE)
 
         binding.homeProfile.setOnClickListener {
-            var save = pref.edit()
+            val save = pref.edit()
             save.putString("username", "")
             save.apply()
             startActivity(Intent(this, ProfileActivity::class.java))
@@ -36,15 +38,15 @@ class HomeActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
         val showUsername = pref.getString("username", "username")
         binding.homeTv.text = "Welcome $showUsername"
 
-        val viewModelMovie = ViewModelProvider(this).get(MovieViewmodel::class.java)
+        val viewModelMovie = ViewModelProvider(this)[MovieViewmodel::class.java]
         viewModelMovie.callTmdb()
-        viewModelMovie.liveDataMovie.observe(this, Observer {
+        viewModelMovie.liveDataMovie.observe(this) {
             if (it != null) {
                 binding.homeRv.layoutManager =
                     LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                 binding.homeRv.adapter = MovieAdapter(it, this@HomeActivity)
             }
-        })
+        }
     }
     override fun onItemClick(data: DataPopularMovie) {
         val intent = Intent(this, DetailActivity::class.java)

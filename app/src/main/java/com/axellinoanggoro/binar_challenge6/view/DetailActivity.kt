@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.axellinoanggoro.binar_challenge6.databinding.ActivityDetailBinding
 import com.axellinoanggoro.binar_challenge6.model.DataPopularMovie
+import com.axellinoanggoro.binar_challenge6.view.adapter.MovieAdapter
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 

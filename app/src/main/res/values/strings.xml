@@ -12,5 +12,11 @@
     <string name="logout">logout</string>
     <string name="register">register</string>
     <string name="confirm_password">confirm password</string>
-    <string name="login_here">login_here</string>
+    <string name="login_here">login here</string>
+    <string name="detail">Detail</string>
+    <string name="judul_film_disini">Judul Film Disini</string>
+    <string name="_05_05_2023">05/05/2023</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_phasellus_facilisis_eros_nulla_porttitor_scelerisque_purus_feugiat_sed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus facilisis eros nulla, porttitor scelerisque purus feugiat sed.</string>
+    <string name="profile">Profile</string>
+    <string name="judul_film">Judul Film</string>
 </resources>
