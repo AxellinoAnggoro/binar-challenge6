@@ -47,6 +47,11 @@ class HomeActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
                 binding.homeRv.adapter = MovieAdapter(it, this@HomeActivity)
             }
         }
+
+        binding.homeFavorite.setOnClickListener {
+            startActivity(Intent(this, FavoriteActivity::class.java))
+            finish()
+        }
     }
     override fun onItemClick(data: DataPopularMovie) {
         val intent = Intent(this, DetailActivity::class.java)
