@@ -9,7 +9,10 @@ import com.axellinoanggoro.binar_challenge6.model.DataPopularMovie
 import com.axellinoanggoro.binar_challenge6.model.ResultPopularMovie
 import com.bumptech.glide.Glide
 
-class MovieAdapter(private var listMovie: List<ResultPopularMovie>, private val listener: OnItemClickListener) :
+class MovieAdapter(
+    private var listMovie: List<ResultPopularMovie>,
+    private val listener: OnItemClickListener
+) :
     RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     interface OnItemClickListener {

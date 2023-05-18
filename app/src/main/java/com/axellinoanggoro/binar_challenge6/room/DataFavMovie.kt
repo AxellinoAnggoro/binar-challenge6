@@ -9,9 +9,9 @@ import kotlinx.parcelize.Parcelize
 @Entity
 data class DataFavMovie(
     @PrimaryKey(autoGenerate = true)
-    var id : Int,
-    var title : String,
-    var date : String,
-    var desc : String,
-    var image : String,
-    ) : Parcelable
+    var id: Int,
+    var title: String,
+    var date: String,
+    var desc: String,
+    var image: String,
+) : Parcelable

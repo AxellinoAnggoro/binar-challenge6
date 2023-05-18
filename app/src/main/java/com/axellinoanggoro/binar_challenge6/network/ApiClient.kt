@@ -13,9 +13,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiClient {
-    private const val  BASE_URL ="https://api.themoviedb.org/3/"
+    private const val BASE_URL = "https://api.themoviedb.org/3/"
 
-    private val logging : HttpLoggingInterceptor
+    private val logging: HttpLoggingInterceptor
         get() {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             return httpLoggingInterceptor.apply {
@@ -28,7 +28,7 @@ object ApiClient {
 
     @Singleton
     @Provides
-    fun provideRetrofit() : Retrofit=
+    fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

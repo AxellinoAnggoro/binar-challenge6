@@ -53,6 +53,7 @@ class HomeActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
             finish()
         }
     }
+
     override fun onItemClick(data: DataPopularMovie) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra("data_detail", data)

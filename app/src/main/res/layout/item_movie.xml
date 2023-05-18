@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvMovie"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,11 +13,12 @@
 
         <ImageView
             android:id="@+id/imgMovie"
-            android:layout_centerVertical="true"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_launcher_background"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             style="@style/TextAppearance.MdcTypographyStyles.Headline6"
@@ -44,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/dateMovie"
             android:layout_toEndOf="@id/imgMovie"
-            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_phasellus_facilisis_eros_nulla_porttitor_scelerisque_purus_feugiat_sed"/>
+            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_phasellus_facilisis_eros_nulla_porttitor_scelerisque_purus_feugiat_sed"
+            tools:ignore="VisualLintLongText" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

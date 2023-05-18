@@ -1,24 +1,22 @@
 package com.axellinoanggoro.binar_challenge6.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.axellinoanggoro.binar_challenge6.databinding.ActivityFavoriteBinding
-import com.axellinoanggoro.binar_challenge6.room.DataFavMovie
 import com.axellinoanggoro.binar_challenge6.room.FavDatabase
 import com.axellinoanggoro.binar_challenge6.view.adapter.FavoriteAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
-    var favDb : FavDatabase? = null
-    lateinit var favAdapter : FavoriteAdapter
-//    lateinit var favVm : FavViewModel
+    private var favDb: FavDatabase? = null
+    //    lateinit var favVm : FavViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +26,11 @@ class FavoriteActivity : AppCompatActivity() {
         favDb = FavDatabase.getInstance(this)
 
         getDataFav()
+
+        binding.favHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
 
 //        favAdapter = FavoriteAdapter(ArrayList())
 //        binding.favRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -39,6 +42,7 @@ class FavoriteActivity : AppCompatActivity() {
 //        })
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun getDataFav() {
         binding.favRv.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

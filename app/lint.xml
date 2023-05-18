@@ -21,5 +21,7 @@
     <issue id="UselessParent" severity="ignore"/>
     <issue id="IconLocation" severity="ignore"/>
     <issue id="UnusedResources" severity="ignore"/>
+    <issue id="ObsoleteSdkInt" severity="ignore"/>
+    <issue id="MonochromeLauncherIcon" severity="ignore"/>
 
 </lint>

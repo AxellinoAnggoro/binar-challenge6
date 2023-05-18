@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.axellinoanggoro.binar_challenge6.model.GetPopularMovie
 import com.axellinoanggoro.binar_challenge6.model.ResultPopularMovie
-import com.axellinoanggoro.binar_challenge6.network.ApiClient
 import com.axellinoanggoro.binar_challenge6.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
@@ -14,7 +13,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewmodel @Inject constructor(var api : ApiService) : ViewModel() {
+class MovieViewmodel @Inject constructor(private var api: ApiService) : ViewModel() {
     var liveDataMovie: MutableLiveData<List<ResultPopularMovie>> = MutableLiveData()
 
     fun callTmdb() {

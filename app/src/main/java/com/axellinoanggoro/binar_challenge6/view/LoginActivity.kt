@@ -13,8 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityLoginBinding
-    private lateinit var auth : FirebaseAuth
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth: FirebaseAuth
     private lateinit var pref: SharedPreferences
 
 
@@ -36,28 +36,28 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.loginEmail.text.toString()
             val password = binding.loginPassword.text.toString()
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 binding.loginEmail.error = "Invalid Email"
                 binding.loginEmail.requestFocus()
                 return@setOnClickListener
             }
 
-            if (password.isEmpty()){
+            if (password.isEmpty()) {
                 binding.loginPassword.error = "Password still empty"
                 binding.loginPassword.requestFocus()
                 return@setOnClickListener
             }
             firebaseAuthLogin(email, password)
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
     }
 
     private fun firebaseAuthLogin(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
-            if (it.isSuccessful){
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+            if (it.isSuccessful) {
                 Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 Toast.makeText(this, "Login Fail", Toast.LENGTH_SHORT).show()
             }
         }

@@ -3,6 +3,7 @@ package com.axellinoanggoro.binar_challenge6.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.axellinoanggoro.binar_challenge6.databinding.ActivityDetailBinding
 import com.axellinoanggoro.binar_challenge6.model.DataPopularMovie
 import com.axellinoanggoro.binar_challenge6.room.DataFavMovie
@@ -10,13 +11,15 @@ import com.axellinoanggoro.binar_challenge6.room.FavDatabase
 import com.axellinoanggoro.binar_challenge6.view.adapter.MovieAdapter
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
     private lateinit var binding: ActivityDetailBinding
-    var favDb: FavDatabase? = null
+    private var favDb: FavDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,17 +33,19 @@ class DetailActivity : AppCompatActivity(), MovieAdapter.OnItemClickListener {
 
         binding.detailFab.setOnClickListener {
             addDataFav(data)
+            Toast.makeText(this, "Success add to Favorite", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun addDataFav(data : DataPopularMovie?){
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun addDataFav(data: DataPopularMovie?) {
         GlobalScope.async {
             val title = data?.title.toString()
             val date = data?.date.toString()
             val overview = data?.desc.toString()
             val imagepath = data?.image.toString()
 
-            favDb?.favDao()?.insertData(DataFavMovie(0,title, date, overview, imagepath))
+            favDb?.favDao()?.insertData(DataFavMovie(0, title, date, overview, imagepath))
         }
         finish()
     }
