@@ -48,5 +48,13 @@
             android:layout_toEndOf="@id/imgFav"
             android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_phasellus_facilisis_eros_nulla_porttitor_scelerisque_purus_feugiat_sed"
             tools:ignore="VisualLintLongText" />
+
+        <ImageView
+            android:id="@+id/deleteFav"
+            android:src="@drawable/deleteicn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/dscFav"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

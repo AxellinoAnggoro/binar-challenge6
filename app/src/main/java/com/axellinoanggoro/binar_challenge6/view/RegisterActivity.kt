@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Toast
 import com.axellinoanggoro.binar_challenge6.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -33,7 +34,14 @@ class RegisterActivity : AppCompatActivity() {
         binding.registerBtn.setOnClickListener {
             val email = binding.registerEmail.text.toString()
             val password = binding.registerPassword.text.toString()
+            val confPassword = binding.registerConfirm.text.toString()
             val getUsername = binding.registerUsername.text.toString()
+
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.registerEmail.error = "Invalid Email"
+                binding.registerEmail.requestFocus()
+                return@setOnClickListener
+            }
 
             if (password.isEmpty()) {
                 binding.registerPassword.error = "Password still empty"
@@ -41,12 +49,18 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            firebaseRegisterAuth(email, password)
-            val save = pref.edit()
-            save.putString("username", getUsername)
-            save.apply()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            if (password == confPassword){
+                firebaseRegisterAuth(email, password)
+                val save = pref.edit()
+                save.putString("username", getUsername)
+                save.apply()
+
+            }else{
+                binding.registerConfirm.error = "Password doesn't match"
+                binding.registerConfirm.requestFocus()
+            }
+
+
         }
     }
 
@@ -54,6 +68,8 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             } else {
                 Toast.makeText(this, "${it.exception?.message}", Toast.LENGTH_SHORT).show()
             }

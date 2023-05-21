@@ -48,8 +48,6 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             firebaseAuthLogin(email, password)
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
         }
     }
 
@@ -57,6 +55,8 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, HomeActivity::class.java))
+                finish()
             } else {
                 Toast.makeText(this, "Login Fail", Toast.LENGTH_SHORT).show()
             }

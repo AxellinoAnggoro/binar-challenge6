@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.axellinoanggoro.binar_challenge6.databinding.ActivityFavoriteBinding
+import com.axellinoanggoro.binar_challenge6.model.DataPopularMovie
 import com.axellinoanggoro.binar_challenge6.room.FavDatabase
 import com.axellinoanggoro.binar_challenge6.view.adapter.FavoriteAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,7 +14,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FavoriteActivity : AppCompatActivity() {
+class FavoriteActivity : AppCompatActivity(), FavoriteAdapter.OnItemClickListener {
     private lateinit var binding: ActivityFavoriteBinding
     private var favDb: FavDatabase? = null
     //    lateinit var favVm : FavViewModel
@@ -43,18 +44,24 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    private fun getDataFav() {
+    fun getDataFav() {
         binding.favRv.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         GlobalScope.launch {
             val listdata = favDb?.favDao()!!.getDataNote()
             runOnUiThread {
                 listdata.let {
-                    val adapt = FavoriteAdapter(it)
+                    val adapt = FavoriteAdapter(it, this@FavoriteActivity)
                     binding.favRv.adapter = adapt
                 }
             }
         }
+    }
+
+    override fun onItemClick(data: DataPopularMovie) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("data_detail", data)
+        startActivity(intent)
     }
 
 //    override fun onStart() {
