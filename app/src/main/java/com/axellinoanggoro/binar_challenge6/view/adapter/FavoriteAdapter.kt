@@ -1,6 +1,5 @@
 package com.axellinoanggoro.binar_challenge6.view.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,10 +9,11 @@ import com.axellinoanggoro.binar_challenge6.room.DataFavMovie
 import com.axellinoanggoro.binar_challenge6.room.FavDatabase
 import com.axellinoanggoro.binar_challenge6.view.FavoriteActivity
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 
-class FavoriteAdapter(private var listFav: List<DataFavMovie>?, private val listener: FavoriteAdapter.OnItemClickListener) :
+class FavoriteAdapter(private var listFav: List<DataFavMovie>?, private val listener: OnItemClickListener) :
     RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     private var dbFav : FavDatabase? = null
@@ -27,6 +27,7 @@ class FavoriteAdapter(private var listFav: List<DataFavMovie>?, private val list
         return ViewHolder(view)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.titleFav.text = listFav!![position].title
         holder.binding.dateFav.text = listFav!![position].date
@@ -48,7 +49,7 @@ class FavoriteAdapter(private var listFav: List<DataFavMovie>?, private val list
         holder.binding.deleteFav.setOnClickListener {
             dbFav = FavDatabase.getInstance(it.context)
             GlobalScope.async {
-                val del = dbFav?.favDao()?.deleteFav(listFav!![position])
+                dbFav?.favDao()?.deleteFav(listFav!![position])
                 (holder.itemView.context as FavoriteActivity).runOnUiThread{
                     (holder.itemView.context as FavoriteActivity).getDataFav()
                 }
