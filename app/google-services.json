@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:590612507736:android:25213f9b8d7cee2b67ee2d",
         "android_client_info": {
-          "package_name": "com.axellinoanggoro.binar_challenge6.teal"
+          "package_name": "com.axellinoanggoro.binar_challenge6.blue"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "590612507736-h548m1i5t489a3qnbqnqjmki623e8rs4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.axellinoanggoro.binar_challenge6.teal",
+            "package_name": "com.axellinoanggoro.binar_challenge6.blue",
             "certificate_hash": "6b6f043c5170e6e68ba9fdcaf33ad665751d8bb4"
           }
         },
