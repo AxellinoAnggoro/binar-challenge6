@@ -30,6 +30,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions("movie")
+    productFlavors{
+        black{
+            applicationIdSuffix ".black"
+            dimension "movie"
+        }
+        blue{
+            applicationIdSuffix ".blue"
+            dimension "movie"
+        }
+        teal{
+            applicationIdSuffix ".teal"
+            dimension "movie"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -48,6 +65,7 @@ android {
 dependencies {
     //hilt
     implementation "com.google.dagger:hilt-android:2.45"
+    testImplementation 'junit:junit:4.12'
     kapt "com.google.dagger:hilt-android-compiler:2.45"
 
     //retrofit
@@ -88,6 +106,8 @@ dependencies {
     implementation "androidx.room:room-runtime:2.3.0"
     kapt "androidx.room:room-compiler:2.3.0"
     implementation "androidx.room:room-ktx:2.3.0"
+    // Mockito
+    testImplementation 'org.mockito:mockito-core:3.12.4'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
