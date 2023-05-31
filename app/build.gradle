@@ -30,6 +30,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions("movie")
+    productFlavors{
+        purple{
+            applicationIdSuffix ".purple"
+            dimension "movie"
+        }
+        
+        teal{
+            applicationIdSuffix ".teal"
+            dimension "movie"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
